@@ -14,10 +14,11 @@ def index():
         host_name = request.form['host_name']
         log_date = request.form['log_date']
         payload = { 'host_name': host_name }
-        r = requests.get('http://192.168.100.110:3001/get')
+        r = requests.get('http://192.168.100.110:3001/get', verify=False)
         return render_template('index.html', host_name = r.text, log_date = log_date)
     else:
         return render_template('index.html')
 
 #起動
-app.run(host="192.168.100.110")
+if __name__ == '__main__':
+    app.run()
